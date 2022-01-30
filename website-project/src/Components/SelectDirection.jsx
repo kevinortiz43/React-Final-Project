@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ContextSetDirection } from "./APIDeals";
 
-function SelectDirection(props) {
+function SelectDirection() {
+  const value = useContext(ContextSetDirection);
   const handleOnChange = (event) => {
-    props.directionSet(event.target.value);
+    value.directionSet(event.target.value);
   };
 
   return (

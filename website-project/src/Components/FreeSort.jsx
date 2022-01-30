@@ -2,9 +2,8 @@ import React,{useContext} from "react";
 import {ContextSetSortBy} from "./APIFree"
 
 
-export default function SelectCategory() {
+export default function SelectSort() {
   const value= useContext(ContextSetSortBy)
-  console.log(value)
   const handleOnChange = (event) => {
    value.sortBy(event.target.value);
   };

@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useContext} from "react";
+import { ContextSetPlatform } from "./APIFree";
 
-export default function SelectCategory(props) {
+export default function SelectCategory() {
+  const value = useContext(ContextSetPlatform)
     const handleOnChange = (event) => {
-    props.platformSet(event.target.value);
+    value.platformSet(event.target.value);
   };
 
   return (

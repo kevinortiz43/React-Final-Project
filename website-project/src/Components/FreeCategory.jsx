@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
+import {ContextSetCategory} from "./APIFree"
 
-function SelectCategory(props) {
+// value={{settingCategory: categorySet}}
+
+export default function SelectCategory() {
+const value = useContext(ContextSetCategory)
   const handleOnChange = (event) => {
-    props.categorySet(event.target.value);
+    value.settingCategory(event.target.value);
   };
 
   return (
@@ -59,4 +63,3 @@ function SelectCategory(props) {
   );
 }
 
-export default SelectCategory;

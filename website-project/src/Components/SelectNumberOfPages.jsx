@@ -1,8 +1,9 @@
-import React from "react";
-
-export default function SelectNumberOfPages(props) {
+import React, { useContext } from "react";
+import { ContextSetPages } from "./APIDeals";
+export default function SelectNumberOfPages() {
+  const value = useContext(ContextSetPages);
   const handleOnChange = (event) => {
-    props.pageSet(event.target.value);
+    value.pageSet(event.target.value);
   };
 
   return (

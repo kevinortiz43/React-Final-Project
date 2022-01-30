@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ContextSetCategories } from "./APIDeals";
 
-function SelectCategory(props) {
+function SelectCategory() {
+  const value = useContext(ContextSetCategories);
   const handleOnChange = (event) => {
-    props.categorySet(event.target.value);
+    value.categorySet(event.target.value);
   };
 
   return (

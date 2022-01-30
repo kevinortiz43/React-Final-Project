@@ -1,26 +1,23 @@
-import React, { useState, useEffect, useReducer, useContext } from "react";
+import React, { useState, useEffect, useReducer, createContext } from "react";
 import axios from "axios";
 import SelectCategory from "./SelectCategory";
 import DealsStore from "./DealsStore";
 import SelectDirection from "./SelectDirection";
 import SelectNumberOfPages from "./SelectNumberOfPages";
-function reducerDirection(state, action) {
-  console.log(action);
-  return action.payload;
-}
-function reducerSetCount(state, action) {
-  return action.payload;
-}
+export const ContextSetCategories = createContext();
+export const ContextSetDirection = createContext();
+export const ContextSetPages = createContext();
+
+function reducerDirection(state, action) {return action.payload;}
+
+function reducerCategory(state, action) {return action.payload;}
 
 export default function APIDeals() {
   const [deals, setDeals] = useState([]);
-  const [sortCategory, setSortCategory] = useState("Reviews");
+  const [sortCategory, dispatchSortCategory] = useReducer(reducerCategory,"Reviews");
   const [count, setCount] = useState(1);
   const [pageSize, setPageSize] = useState(15);
-  const [sortDirection, dispatchSortDirection] = useReducer(
-    reducerDirection,
-    0
-  );
+  const [sortDirection, dispatchSortDirection] = useReducer(reducerDirection,0);
   const [searchBar, setSearchBar] = useState("");
 
   function apiCall() {
@@ -29,13 +26,9 @@ export default function APIDeals() {
       .then(function (response) {
         let tempArray = [];
         response.data.forEach((dataElement) => {
-          if (
-            tempArray.find((element) => element.title === dataElement.title)
-          ) {
-            tempArray[
-              tempArray.findIndex(
-                (individual) => individual.title === dataElement.title
-              )
+          if (tempArray.find((element) => element.title === dataElement.title))
+           {tempArray[tempArray.findIndex(
+            (individual) => individual.title === dataElement.title)
             ].sales.push({
               salePrice: dataElement.salePrice,
               savings: dataElement.savings,
@@ -64,7 +57,7 @@ export default function APIDeals() {
         });
 
         setDeals(tempArray);
-        console.log(response.data);
+        console.log(tempArray);
       })
       .catch(function (error) {
         console.log(error);
@@ -78,7 +71,6 @@ export default function APIDeals() {
       if (count >= 50) return count;
       return count + 1;
     });
-    console.log("nextPage");
   };
   const previousPage = () => {
     setCount((count) => {
@@ -95,7 +87,7 @@ export default function APIDeals() {
   };
 
   function categorySet(category) {
-    setSortCategory(category);
+    dispatchSortCategory({ type: "sorting-the-category", payload: category });
     setCount(1);
   }
   function directionSet(direction) {
@@ -114,6 +106,7 @@ export default function APIDeals() {
 
   useEffect(() => {
     apiCall();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortCategory, count, sortDirection, pageSize, searchBar]);
 
   return (
@@ -131,18 +124,24 @@ export default function APIDeals() {
         </form>
 
         <div className="category">
-          <h3>Categories</h3>
-          <SelectCategory categorySet={categorySet} />
+          <ContextSetCategories.Provider value={{ categorySet: categorySet }}>
+            <h3>Categories</h3>
+            <SelectCategory />
+          </ContextSetCategories.Provider>
         </div>
 
         <div className="direction">
-          <h3>Direction</h3>
-          <SelectDirection directionSet={directionSet} />
+          <ContextSetDirection.Provider value={{ directionSet: directionSet }}>
+            <h3>Direction</h3>
+            <SelectDirection />
+          </ContextSetDirection.Provider>
         </div>
 
         <div className="pageSize">
-          <h3>Number items per page</h3>
-          <SelectNumberOfPages pageSet={pageSet} />
+          <ContextSetPages.Provider value={{ pageSet: pageSet }}>
+            <h3>Number items per page</h3>
+            <SelectNumberOfPages />
+          </ContextSetPages.Provider>
         </div>
 
         <div className="pageButtons">
@@ -161,36 +160,50 @@ export default function APIDeals() {
             {" "}
             {"Next"}{" "}
           </button>
+        
         </div>
       </div>
       <div className="Deals-Container">
         {deals.map((deals, index) => (
-          <div className="Deals" key={index}>
+      
+      <div className="Deals" key={index}>
             <h2> Title:</h2>
             <h4>{deals.title}</h4>
+      
             <img
               className="Video-Game-Thumbnails"
               alt="Video Game Thumbnails"
               src={deals.thumb}
-            />{" "}
+            />{" "}      
             <br />
-            <a href={`https://store.steampowered.com/app/${deals.steamAppID}`}>
-              Steam Store page
-            </a>
+           
+            {deals.steamAppID === null ? (
+              <p> Steam page not available </p>
+            ) : (
+              <a
+                href={`https://store.steampowered.com/app/${deals.steamAppID}`}
+              >
+                Steam Store page
+              </a>
+            )}
+           
             <h3> Steam Rating:</h3>
-            {deals.steamRatingPercent >= 50 ? (
+            {deals.steamAppID === null ? (
+              <p style={{ color: "red" }}> No score available</p>
+            ) : (
               <p style={{ color: "green" }}>{deals.steamRatingPercent}%</p>
-            ) : (
-              <p style={{ color: "red" }}>{deals.steamRatingPercent}%</p>
             )}
-            {deals.steamRatingText === "Overwhelmingly Positive" ? (
-              <h4 style={{ color: "green" }}> {deals.steamRatingText} </h4>
+           
+            {deals.steamAppID === null ? (
+              <h4> No text available </h4>
             ) : (
-              <h4> {deals.steamRatingText} </h4>
+              <h4 style={{ color: "blue" }}> {deals.steamRatingText} </h4>
             )}
+           
             <a href={`https://www.metacritic.com${deals.metacriticLink}`}>
               Metacritic review
             </a>
+           
             <h3>Score:</h3>
             {deals.metacriticScore > 0 ? (
               <p style={{ color: "green" }} className="Rating-Percentage">
@@ -199,6 +212,7 @@ export default function APIDeals() {
             ) : (
               <p style={{ color: "red" }}>No score available </p>
             )}
+           
             <p>Normal Price: ${deals.normalPrice}</p>
             {deals.sales.map((deals, index) => {
               return <DealsStore deals={deals} key={index} />;
@@ -219,18 +233,24 @@ export default function APIDeals() {
         </form>
 
         <div className="category">
-          <h3>Categories</h3>
-          <SelectCategory categorySet={categorySet} />
+          <ContextSetCategories.Provider value={{ categorySet: categorySet }}>
+            <h3>Categories</h3>
+            <SelectCategory />
+          </ContextSetCategories.Provider>
         </div>
 
         <div className="direction">
-          <h3>Direction</h3>
-          <SelectDirection directionSet={directionSet} />
+          <ContextSetDirection.Provider value={{ directionSet: directionSet }}>
+            <h3>Direction</h3>
+            <SelectDirection />
+          </ContextSetDirection.Provider>
         </div>
 
         <div className="pageSize">
-          <h3>Number items per page</h3>
-          <SelectNumberOfPages pageSet={pageSet} />
+          <ContextSetPages.Provider value={{ pageSet: pageSet }}>
+            <h3>Number items per page</h3>
+            <SelectNumberOfPages />
+          </ContextSetPages.Provider>
         </div>
 
         <div className="pageButtons">
@@ -240,11 +260,9 @@ export default function APIDeals() {
           </button>
 
           <button className="Previous-Page" onClick={previousPage}>
-            {" "}
             {"Last"}
           </button>
           <button className="Next-Page" onClick={nextPage}>
-            {" "}
             {"Next"}{" "}
           </button>
         </div>
