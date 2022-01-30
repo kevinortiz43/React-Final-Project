@@ -4,7 +4,7 @@ import Contact from "./Contact";
 import DataFree from "./APIFree";
 import APIDeals from "./APIDeals";
 import Error from "./Error";
-import Home from "./About";
+import Credits from "./Credits";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function Layout() {
@@ -13,7 +13,7 @@ export default function Layout() {
       <Nav />
       <div className="App">
         <Routes>
-          <Route path="home" element={<Home />} />
+          <Route path="credits" element={<Credits />} />
           <Route path="free" element={<DataFree />} />
           <Route path="deals" element={<APIDeals />} />
           <Route path="contact" element={<Contact />} />
