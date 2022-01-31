@@ -9,12 +9,13 @@ export const ContextSetDirection = createContext();
 export const ContextSetPages = createContext();
 function reducerDirection(state, action) {return action.payload;}
 function reducerCategory(state, action) {return action.payload;}
+function reducerPage(state,action) {return action.payload}
 
 export default function APIDeals() {
   const [deals, setDeals] = useState([]);
   const [sortCategory, dispatchSortCategory] = useReducer(reducerCategory,"Reviews");
   const [count, setCount] = useState(1);
-  const [pageSize, setPageSize] = useState(15);
+  const [pageSize, dispatchSetPageSize] = useReducer(reducerPage, 15);
   const [sortDirection, dispatchSortDirection] = useReducer(reducerDirection,0);
   const [searchBar, setSearchBar] = useState("");
 
@@ -97,7 +98,7 @@ export default function APIDeals() {
     setCount(1);
   }
   function pageSet(page) {
-    setPageSize(page);
+    dispatchSetPageSize({type:"setting number", payload: page});
     setCount(1);
   }
 
