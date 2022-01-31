@@ -4,4 +4,4 @@ Problem Statement: This website was created to help people who love video games.
 
 Our other page "List of free games" will provide you with a list of Free games, link to reviews, and link to download the game.
 
-Please click here to access our site [Video Game Website](http://react-final-project.io/)
+Please click here to access our site [Video Game Website](https://kevinortiz43.github.io/React-Final-Project/)
