@@ -12,16 +12,10 @@ function reducerCategory(state, action) {return action.payload;}
 
 export default function APIDeals() {
   const [deals, setDeals] = useState([]);
-  const [sortCategory, dispatchSortCategory] = useReducer(
-    reducerCategory,
-    "Reviews"
-  );
+  const [sortCategory, dispatchSortCategory] = useReducer(reducerCategory,"Reviews");
   const [count, setCount] = useState(1);
   const [pageSize, setPageSize] = useState(15);
-  const [sortDirection, dispatchSortDirection] = useReducer(
-    reducerDirection,
-    0
-  );
+  const [sortDirection, dispatchSortDirection] = useReducer(reducerDirection,0);
   const [searchBar, setSearchBar] = useState("");
 
   function apiCall() {
