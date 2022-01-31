@@ -7,17 +7,21 @@ import SelectNumberOfPages from "./SelectNumberOfPages";
 export const ContextSetCategories = createContext();
 export const ContextSetDirection = createContext();
 export const ContextSetPages = createContext();
-
 function reducerDirection(state, action) {return action.payload;}
-
 function reducerCategory(state, action) {return action.payload;}
 
 export default function APIDeals() {
   const [deals, setDeals] = useState([]);
-  const [sortCategory, dispatchSortCategory] = useReducer(reducerCategory,"Reviews");
+  const [sortCategory, dispatchSortCategory] = useReducer(
+    reducerCategory,
+    "Reviews"
+  );
   const [count, setCount] = useState(1);
   const [pageSize, setPageSize] = useState(15);
-  const [sortDirection, dispatchSortDirection] = useReducer(reducerDirection,0);
+  const [sortDirection, dispatchSortDirection] = useReducer(
+    reducerDirection,
+    0
+  );
   const [searchBar, setSearchBar] = useState("");
 
   function apiCall() {
@@ -26,9 +30,13 @@ export default function APIDeals() {
       .then(function (response) {
         let tempArray = [];
         response.data.forEach((dataElement) => {
-          if (tempArray.find((element) => element.title === dataElement.title))
-           {tempArray[tempArray.findIndex(
-            (individual) => individual.title === dataElement.title)
+          if (
+            tempArray.find((element) => element.title === dataElement.title)
+          ) {
+            tempArray[
+              tempArray.findIndex(
+                (individual) => individual.title === dataElement.title
+              )
             ].sales.push({
               salePrice: dataElement.salePrice,
               savings: dataElement.savings,
@@ -106,7 +114,7 @@ export default function APIDeals() {
 
   useEffect(() => {
     apiCall();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortCategory, count, sortDirection, pageSize, searchBar]);
 
   return (
@@ -160,63 +168,72 @@ export default function APIDeals() {
             {" "}
             {"Next"}{" "}
           </button>
-        
         </div>
       </div>
       <div className="Deals-Container">
         {deals.map((deals, index) => (
-      
-      <div className="Deals" key={index}>
+          <div className="Deals" key={index}>
             <h2> Title:</h2>
             <h4>{deals.title}</h4>
-      
             <img
               className="Video-Game-Thumbnails"
               alt="Video Game Thumbnails"
               src={deals.thumb}
-            />{" "}      
+              style={{border:"solid"}}
+              />{" "}
             <br />
-           
+            <p>Normal Price: ${deals.normalPrice}</p>
+            <div className="Deals-Containers">
+            {deals.sales.map((deals, index) => {
+              return <DealsStore deals={deals} key={index} />;
+            })}{" "}
+            </div>
             {deals.steamAppID === null ? (
               <p> Steam page not available </p>
-            ) : (
+              ) : (
               <a
                 href={`https://store.steampowered.com/app/${deals.steamAppID}`}
               >
                 Steam Store page
               </a>
             )}
-           
             <h3> Steam Rating:</h3>
             {deals.steamAppID === null ? (
               <p style={{ color: "red" }}> No score available</p>
-            ) : (
+            ) : deals.steamRatingPercent > 70 ? (
               <p style={{ color: "green" }}>{deals.steamRatingPercent}%</p>
-            )}
-           
-            {deals.steamAppID === null ? (
-              <h4> No text available </h4>
+            ) : deals.steamRatingPercent >= 50 &&
+              deals.steamRatingPercent < 70 ? (
+              <p style={{ color: "yellow" }}>{deals.steamRatingPercent}%</p>
             ) : (
-              <h4 style={{ color: "blue" }}> {deals.steamRatingText} </h4>
+              <p style={{ color: "red" }}>{deals.steamRatingPercent}%</p>
             )}
-           
+
+
+            {deals.steamAppID === null ? (
+              <p style={{ color: "red" }}></p>
+            ) : deals.steamRatingPercent > 70 ? (
+              <p style={{ color: "green" }}>{deals.steamRatingText}</p>
+            ) : deals.steamRatingPercent >= 50 &&
+              deals.steamRatingPercent < 70 ? (
+              <p style={{ color: "yellow" }}>{deals.steamRatingText}</p>
+            ) : (
+              <p style={{ color: "red" }}>{deals.steamRatingText}</p>
+            )}
+
             <a href={`https://www.metacritic.com${deals.metacriticLink}`}>
               Metacritic review
             </a>
-           
-            <h3>Score:</h3>
+            <h3>Metacritic Rating:</h3>
             {deals.metacriticScore > 0 ? (
               <p style={{ color: "green" }} className="Rating-Percentage">
-                {deals.metacriticScore}
+                {" "}
+                {deals.metacriticScore}%
               </p>
             ) : (
               <p style={{ color: "red" }}>No score available </p>
             )}
-           
-            <p>Normal Price: ${deals.normalPrice}</p>
-            {deals.sales.map((deals, index) => {
-              return <DealsStore deals={deals} key={index} />;
-            })}{" "}
+  
           </div>
         ))}
       </div>

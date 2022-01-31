@@ -3,6 +3,7 @@ import axios from "axios";
 import FreeSort from "./FreeSort";
 import FreeCategory from "./FreeCategory";
 import FreePlatform from "./FreePlatform";
+// import {GiAbbotMeeple} from "react-icons/gi"
 export const ContextSetSortBy = createContext();
 export const ContextSetCategory = createContext();
 export const ContextSetPlatform = createContext();
@@ -27,6 +28,7 @@ export default function APIFree() {
       .request(setUpFree)
       .then(function (response) {
         setFree(response.data);
+        console.log(response.data)
       })
       .catch(function (error) {
         console.error(error);
@@ -50,21 +52,30 @@ export default function APIFree() {
   }, [sortBy, category, platform]);
 
   return (
-    <div className="Free-Store-Category">
-      <ContextSetSortBy.Provider value={{ sortBy: sortSet }}>
-        <h3>Sort By:</h3>
-        <FreeSort />
-      </ContextSetSortBy.Provider>
+    <div>
+      <div className="Free-Store-Category">
+       
+       <div className="freeSort">
+        <ContextSetSortBy.Provider value={{ sortBy: sortSet }}>
+          <h3>Sort By:</h3>
+          <FreeSort />
+        </ContextSetSortBy.Provider>
+        </div>
+          
+        <div className="freeFilter">
+        <ContextSetCategory.Provider value={{ settingCategory: categorySet }}>
+          <h3>Filter: </h3>
+          <FreeCategory />
+        </ContextSetCategory.Provider>
+        </div>
+         <div className="freePlatforms"> 
+        <ContextSetPlatform.Provider value={{ platformSet: platformSet }}>
+          <h3>Platforms:</h3>
+          <FreePlatform />
+        </ContextSetPlatform.Provider>
+        </div>
 
-      <ContextSetPlatform.Provider value={{ platformSet: platformSet }}>
-        <h3>Platforms:</h3>
-        <FreePlatform />
-      </ContextSetPlatform.Provider>
-
-      <ContextSetCategory.Provider value={{ settingCategory: categorySet }}>
-        <h3>Filter: </h3>
-        <FreeCategory />
-      </ContextSetCategory.Provider>
+      </div>
 
       <div className="Free-Container">
         {free.map((free, index) => (
@@ -96,7 +107,7 @@ export default function APIFree() {
               <p>{free.genre}</p>
 
               <h3>Platform</h3>
-              <p>{free.platform}</p>
+              <p>{free.platform} </p>
 
               <h3>Description</h3>
               <p>{free.short_description}</p>

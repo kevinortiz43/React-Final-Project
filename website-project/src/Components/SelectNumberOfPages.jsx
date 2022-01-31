@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ContextSetPages } from "./APIDeals";
+
 export default function SelectNumberOfPages() {
   const value = useContext(ContextSetPages);
   const handleOnChange = (event) => {

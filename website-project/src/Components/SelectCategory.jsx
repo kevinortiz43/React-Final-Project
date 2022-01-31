@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ContextSetCategories } from "./APIDeals";
 
-function SelectCategory() {
+export default function SelectCategory() {
   const value = useContext(ContextSetCategories);
   const handleOnChange = (event) => {
     value.categorySet(event.target.value);
@@ -23,4 +23,3 @@ function SelectCategory() {
   );
 }
 
-export default SelectCategory;

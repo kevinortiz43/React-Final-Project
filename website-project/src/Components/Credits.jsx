@@ -16,9 +16,6 @@ export default function Credits() {
         They are great and you should check them out at:
          <a href={`https://www.cheapshark.com`}>Cheap shark</a>
         </h2>
-        
-
-
     </div>
   );
 }

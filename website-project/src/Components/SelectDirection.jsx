@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ContextSetDirection } from "./APIDeals";
 
-function SelectDirection() {
+export default function SelectDirection() {
   const value = useContext(ContextSetDirection);
   const handleOnChange = (event) => {
     value.directionSet(event.target.value);
@@ -17,4 +17,3 @@ function SelectDirection() {
   );
 }
 
-export default SelectDirection;

@@ -18,11 +18,3 @@ export default function SelectCategory() {
   );
 }
 
-/*
-SPECIFIC PLATFORMS FOR GAMING
-params: {platform: 'pc'},
-params: {platform:'xbox'}
-params:{platform: 'ps4'}
-params:{platform: 'browser'}
-params:{platform: 'all'}
- */

@@ -13,11 +13,11 @@
     "nothing2 buttons buttons nothing7";
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  margin: 10px;
 }
 
-.Free-Videogame-Thumbnails{
+.Free-Videogame-Thumbnails {
   border: solid;
-  
 }
 
 .searchBar {
@@ -40,16 +40,17 @@
   grid-area: buttons;
 }
 
+
 .Deals-Container {
   text-align: center;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  background-color: rgba(210, 218, 226, 1);
+  margin: 10px;
 }
 
 .Deals {
-  background-color: rgba(202, 211, 200, 1);
+  background-color: #c8d6e5;
   border: solid;
   margin: 5px;
   height: auto;
@@ -67,13 +68,13 @@
 
 .Free-Container {
   display: flex;
-  background-color: rgba(210, 218, 226, 1);
   justify-content: space-evenly;
   flex-wrap: wrap;
+  margin: 5px;
 }
 
 .Free {
-  background: rgba(202, 211, 200, 1);
+  background: #c8d6e5;
   border: solid;
   margin: 5px;
   width: 375px;
@@ -81,11 +82,45 @@
 
 .Free-Store-Category {
   background-color: rgba(37, 204, 247, 1);
+  border: solid;
+  display: grid;
+  grid-template-areas: 
+  "nothing nothing nothing nothing"
+  "freeSort  freeFilter freePlatforms freePlatforms" ;
+grid-template-columns: 1fr 1fr 1fr ;
+grid-template-rows: 1fr 1fr;
+margin: 10px;
 }
+
 .nav-links {
   display: flex;
-  background-color: rgba(68, 189, 50, 1);
+  border: solid;
+  background-color: #30336b;
   justify-content: space-evenly;
+  text-shadow: 1px 1px black;
+  margin: 10px;
+  padding: 5px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+.nav-links a {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.nav-links a.active {
+  border: solid;
+  transition: all 500ms;
+  background: rgb(48, 51, 107);
+  background: linear-gradient(
+    90deg,
+    rgba(48, 51, 107, 1) 0%,
+    rgba(33, 34, 107, 1) 10%,
+    rgba(33, 34, 107, 1) 90%,
+    rgba(48, 51, 107, 1) 100%
+  );
+  transform: scale(1.09);
 }
 
 .Next-Page {

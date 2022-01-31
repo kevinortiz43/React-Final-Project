@@ -1,8 +1,6 @@
 import React, {useContext} from "react";
 import {ContextSetCategory} from "./APIFree"
 
-// value={{settingCategory: categorySet}}
-
 export default function SelectCategory() {
 const value = useContext(ContextSetCategory)
   const handleOnChange = (event) => {
