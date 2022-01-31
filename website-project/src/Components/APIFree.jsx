@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext, useReducer } from "react";
 import axios from "axios";
 import FreeSort from "./FreeSort";
 import FreeCategory from "./FreeCategory";
@@ -7,12 +7,16 @@ import FreePlatform from "./FreePlatform";
 export const ContextSetSortBy = createContext();
 export const ContextSetCategory = createContext();
 export const ContextSetPlatform = createContext();
+function reducerSortBy(state,action) {return action.payload;}
+function reducerCategory(state,action) {return action.payload;}
+function reducerPlatform(state,action) {return action.payload;}
+
 
 export default function APIFree() {
   const [free, setFree] = useState([]);
-  const [sortBy, setSortBy] = useState("alphabetical");
-  const [category, setCategory] = useState("3d");
-  const [platform, setPlatform] = useState("all");
+  const [sortBy, dispatchSetSortBy] = useReducer(reducerSortBy,"alphabetical");
+  const [category, dispatchSetCategory] = useReducer(reducerCategory,"3d");
+  const [platform, dispatchSetPlatform] = useReducer(reducerPlatform,"all");
 
   let setUpFree = {
     method: "GET",
@@ -36,15 +40,15 @@ export default function APIFree() {
   }
 
   function sortSet(sort) {
-    setSortBy(sort);
+    dispatchSetSortBy(sort);
   }
 
   function categorySet(categoryParams) {
-    setCategory(categoryParams);
+    dispatchSetCategory(categoryParams);
   }
 
   function platformSet(platformParams) {
-    setPlatform(platformParams);
+    dispatchSetPlatform(platformParams);
   }
 
   useEffect(() => {
