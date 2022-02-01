@@ -109,7 +109,6 @@ export default function APIDeals() {
 
   useEffect(() => {
     dealAPICall();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortCategory, count, sortDirection, pageSize, searchBar]);
 
   return (
@@ -186,8 +185,8 @@ export default function APIDeals() {
             {deals.steamAppID === null ? (
               <p> Steam page not available </p>
               ) : (
-              <a
-                href={`https://store.steampowered.com/app/${deals.steamAppID}`}
+              <a style={{textDecoration:"none"}}
+                href={`https://store.steampowered.com/app/${deals.steamAppID}` }
               >
                 Steam Store page
               </a>
@@ -216,7 +215,7 @@ export default function APIDeals() {
               <p style={{ color: "red" }}>{deals.steamRatingText}</p>
             )}
 
-            <a href={`https://www.metacritic.com${deals.metacriticLink}`}>
+            <a style={{textDecoration:"none"}} href={`https://www.metacritic.com${deals.metacriticLink}`}>
               Metacritic review
             </a>
             <h3>Metacritic Rating:</h3>
