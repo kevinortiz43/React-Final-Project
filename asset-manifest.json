@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/kevinortiz43/React-Final-Project/static/css/main.66514446.css",
+    "main.js": "/kevinortiz43/React-Final-Project/static/js/main.35fc2368.js",
+    "index.html": "/kevinortiz43/React-Final-Project/index.html",
+    "main.66514446.css.map": "/kevinortiz43/React-Final-Project/static/css/main.66514446.css.map",
+    "main.35fc2368.js.map": "/kevinortiz43/React-Final-Project/static/js/main.35fc2368.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.66514446.css",
+    "static/js/main.35fc2368.js"
+  ]
+}
