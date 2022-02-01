@@ -152,184 +152,184 @@ export default function APIFree() {
               src={free.thumbnail}
             />
             <div className="Categories">
-              <h3>Release date</h3>
+              <h2>Release date: </h2>
               <p>{free.release_date}</p>
 
-              <h3>Genre</h3>
-
+              <div className="Genre-Container"></div>
+              <h2>Genre:</h2>
               {free.genre === "Shooter" ? (
-                <p>
+                <h4>
                   {free.genre} <GiBolterGun />
-                </p>
+                </h4>
               ) : free.genre === "MMORPG" ? (
-                <p>
+                <h4>
                   {free.genre} <GiTabletopPlayers />
-                </p>
+                </h4>
               ) : free.genre === "Strategy" ? (
-                <p>
+                <h4>
                   {free.genre} <GiChessQueen />
-                </p>
+                </h4>
               ) : free.genre === "MOBA" ? (
-                <p>
+                <h4>
                   {free.genre} <GiBattleGear />
-                </p>
+                </h4>
               ) : free.genre === "Racing" ? (
-                <p>
+                <h4>
                   {free.genre} <GiRaceCar />
-                </p>
+                </h4>
               ) : free.genre === "Sports" ? (
-                <p>
+                <h4>
                   {free.genre} <GiSportMedal />
-                </p>
+                </h4>
               ) : free.genre === "Social" ? (
-                <p>
+                <h4>
                   {free.genre} <GiPartyFlags />
-                </p>
+                </h4>
               ) : free.genre === "Sandbox" ? (
-                <p>
+                <h4>
                   {free.genre} <GiJetpack />
-                </p>
+                </h4>
               ) : free.genre === "Open-World" ? (
-                <p>
+                <h4>
                   {free.genre}
                   <GiEarthAmerica />
-                </p>
+                </h4>
               ) : free.genre === "Survival" ? (
-                <p>
+                <h4>
                   {free.genre}
                   <GiSwissArmyKnife />
-                </p>
+                </h4>
               ) : free.genre === "PVP" ? (
-                <p>
+                <h4>
                   {free.genre}
                   <GiPlayerNext />
-                </p>
+                </h4>
               ) : free.genre === "PVE" ? (
-                <p>
+                <h4>
                   {free.genre}
                   <GiBowieKnife />
-                </p>
+                </h4>
               ) : free.genre === "Pixel" ? (
-                <p>
+                <h4>
                   {free.genre} <GiWarPick />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Voxel" ? (
-                <p>
+                <h4>
                   {free.genre} <GiVortex />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Zombie" ? (
-                <p>
+                <h4>
                   {free.genre} <GiRaiseZombie />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Turn-Based" ? (
-                <p>
+                <h4>
                   {free.genre} <GiReturnArrow />{" "}
-                </p>
+                </h4>
               ) : free.genre === "First-Person" ? (
-                <p>
+                <h4>
                   {free.genre} <GiCrosshair />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Third-Person" ? (
-                <p>
+                <h4>
                   {free.genre} <GiPlayerTime />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Top-Down" ? (
-                <p>
+                <h4>
                   {free.genre} <GiBullyMinion />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Tank" ? (
-                <p>
+                <h4>
                   {free.genre} <GiGreatWarTank />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Space" ? (
-                <p>
+                <h4>
                   {free.genre} <GiSpaceship />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Sailing" ? (
-                <p>
+                <h4>
                   {free.genre} <GiSailboat />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Side-Scroller" ? (
-                <p>
+                <h4>
                   {free.genre} <GiLaddersPlatform />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Superhero" ? (
-                <p>
+                <h4>
                   {free.genre} <GiStrong />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Permadeath" ? (
-                <p>
+                <h4>
                   {free.genre} <GiDeathZone />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Card" || free.genre === "Card Game" ? (
-                <p>
+                <h4>
                   {free.genre} <GiCardDraw />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Battle Royale" ? (
-                <p>
+                <h4>
                   {free.genre} <GiBattleAxe />{" "}
-                </p>
+                </h4>
               ) : free.genre === "MMO" ||
                 free.genre === "MMOFPS" ||
                 free.genre === "MMOTPS" ||
                 free.genre === "MMORTS" ? (
-                <p>
+                <h4>
                   {free.genre} <GiDungeonGate />{" "}
-                </p>
+                </h4>
               ) : free.genre === "3d" ? (
-                <p>
+                <h4>
                   {free.genre} <Gi3DMeeple />{" "}
-                </p>
+                </h4>
               ) : free.genre === "2d" ? (
-                <p>
+                <h4>
                   {free.genre} <GiPerson />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Anime" ? (
-                <p>
+                <h4>
                   {free.genre} <GiPencilBrush />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Fantasy" ? (
-                <p>
+                <h4>
                   {free.genre} <GiCrocSword />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Sci-Fi" || free.genre === "Sci Fi" ? (
-                <p>
+                <h4>
                   {free.genre} <GiMaterialsScience />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Fighting" ||
                 free.genre === "Martial-Arts" ||
                 free.genre === "Martial Arts" ? (
-                <p>
+                <h4>
                   {free.genre} <GiBrassKnuckles />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Flight" ? (
-                <p>
+                <h4>
                   {free.genre} <GiJetFighter />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Low-Spec" || free.genre === "Low Spec" ? (
-                <p>
+                <h4>
                   {free.genre} <GiLaptop />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Tower-Defense" ||
                 free.genre === "Tower Defense" ? (
-                <p>
+                <h4>
                   {free.genre} <GiStoneTower />{" "}
-                </p>
+                </h4>
               ) : free.genre === "Horror" ? (
-                <p>
+                <h4>
                   {free.genre} <GiJasonMask />{" "}
-                </p>
+                </h4>
               ) : (
                 free.genre === "Action-RPG" || free.genre==="Action RPG" || free.genre==="ARPG"
-                ?(<p>
-                  {free.genre} <GiAncientSword /></p>)
+                ?(<h4>
+                  {free.genre} <GiAncientSword /></h4>)
                   :(free.genre)
               )}
 
-              <h3>Platform</h3>
+              <h2>Platform:</h2>
               <p>{free.platform} </p>
 
-              <h3>Description</h3>
+              <h2>Description: </h2>
               <p>{free.short_description}</p>
             </div>
           </div>
