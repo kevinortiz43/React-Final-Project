@@ -19,6 +19,8 @@ export default function APIDeals() {
   const [sortDirection, dispatchSortDirection] = useReducer(reducerDirection,0);
   const [searchBar, setSearchBar] = useState("");
 
+
+
   function dealAPICall() {
     axios
       .request(setUpDeals)
@@ -89,6 +91,8 @@ export default function APIDeals() {
     headers: {},
   };
 
+
+
   function categorySet(category) {
     dispatchSortCategory({ type: "sorting-the-category", payload: category });
     setCount(1);
@@ -106,7 +110,7 @@ export default function APIDeals() {
     setSearchBar(anything.target.value);
     setCount(1);
   }
-
+  
   useEffect(() => {
     dealAPICall();
   // eslint-disable-next-line react-hooks/exhaustive-deps

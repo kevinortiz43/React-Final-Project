@@ -12,9 +12,9 @@ export default function SelectSort() {
   return (
     <div>
       <select onClick={handleOnChange}>
-        <option value={"alphabetical"}>alphabetical</option>
-        <option value={"popularity"}>popularity</option>
-        <option value={"release-date"}>release-date</option>
+        <option value={"alphabetical"}>Alphabetical</option>
+        <option value={"popularity"}>Popularity</option>
+        <option value={"release-date"}>Release-date</option>
       </select>
     </div>
   );

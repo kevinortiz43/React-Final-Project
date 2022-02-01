@@ -189,7 +189,7 @@ margin: 10px;
   width: 275px;
 }
 
-@media(max-width:1000px){
+@media(max-width:700px){
   .nav-links{
     display: grid;
     font-size: .75em;
