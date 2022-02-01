@@ -42,6 +42,7 @@ import {
   GiTabletopPlayers,
   GiChessQueen,
   GiBattleGear,
+  GiAncientSword,
 } from "react-icons/gi";
 export const ContextSetSortBy = createContext();
 export const ContextSetCategory = createContext();
@@ -100,6 +101,7 @@ export default function APIFree() {
 
   useEffect(() => {
     freeAPICall();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortBy, category, platform]);
 
   return (
@@ -263,7 +265,7 @@ export default function APIFree() {
                 <p>
                   {free.genre} <GiCardDraw />{" "}
                 </p>
-              ) : free.genre === "Battle-Royale" ? (
+              ) : free.genre === "Battle Royale" ? (
                 <p>
                   {free.genre} <GiBattleAxe />{" "}
                 </p>
@@ -318,7 +320,10 @@ export default function APIFree() {
                   {free.genre} <GiJasonMask />{" "}
                 </p>
               ) : (
-                free.genre
+                free.genre === "Action-RPG" || free.genre==="Action RPG" || free.genre==="ARPG"
+                ?(<p>
+                  {free.genre} <GiAncientSword /></p>)
+                  :(free.genre)
               )}
 
               <h3>Platform</h3>
