@@ -27,7 +27,7 @@ export default function APIFree() {
     },
   };
 
-  function apiCall() {
+  function freeAPICall() {
     axios
       .request(setUpFree)
       .then(function (response) {
@@ -40,19 +40,19 @@ export default function APIFree() {
   }
 
   function sortSet(sort) {
-    dispatchSetSortBy(sort);
+    dispatchSetSortBy({type:"switching sort", paylod: sort });
   }
 
   function categorySet(categoryParams) {
-    dispatchSetCategory(categoryParams);
+    dispatchSetCategory({type:"switching categories", payload: categoryParams});
   }
 
   function platformSet(platformParams) {
-    dispatchSetPlatform(platformParams);
+    dispatchSetPlatform({type:"changing platform", payod:platformParams });
   }
 
   useEffect(() => {
-    apiCall();
+    freeAPICall();
   }, [sortBy, category, platform]);
 
   return (

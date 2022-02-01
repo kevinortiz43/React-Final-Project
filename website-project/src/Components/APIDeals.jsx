@@ -19,7 +19,7 @@ export default function APIDeals() {
   const [sortDirection, dispatchSortDirection] = useReducer(reducerDirection,0);
   const [searchBar, setSearchBar] = useState("");
 
-  function apiCall() {
+  function dealAPICall() {
     axios
       .request(setUpDeals)
       .then(function (response) {
@@ -108,7 +108,7 @@ export default function APIDeals() {
   }
 
   useEffect(() => {
-    apiCall();
+    dealAPICall();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortCategory, count, sortDirection, pageSize, searchBar]);
 
