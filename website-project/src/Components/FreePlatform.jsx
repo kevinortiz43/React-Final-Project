@@ -12,7 +12,7 @@ export default function SelectCategory() {
       <select onClick={handleOnChange}>
         <option value={"all"}>all</option>
         <option value={"browser"}>Browser</option>
-        <option value={"pc"}>Pc</option>
+        <option value={"pc"}>PC</option>
       </select>
     </div>
   );
