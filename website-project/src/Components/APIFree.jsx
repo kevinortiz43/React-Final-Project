@@ -101,7 +101,7 @@ export default function APIFree() {
 
   useEffect(() => {
     freeAPICall();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortBy, category, platform]);
 
   return (
@@ -157,6 +157,7 @@ export default function APIFree() {
 
               <div className="Genre-Container"></div>
               <h2>Genre:</h2>
+              
               {free.genre === "Shooter" ? (
                 <h4>
                   {free.genre} <GiBolterGun />
@@ -319,11 +320,14 @@ export default function APIFree() {
                 <h4>
                   {free.genre} <GiJasonMask />{" "}
                 </h4>
+              ) : free.genre === "Action-RPG" ||
+                free.genre === "Action RPG" ||
+                free.genre === "ARPG" ? (
+                <h4>
+                  {free.genre} <GiAncientSword />
+                </h4>
               ) : (
-                free.genre === "Action-RPG" || free.genre==="Action RPG" || free.genre==="ARPG"
-                ?(<h4>
-                  {free.genre} <GiAncientSword /></h4>)
-                  :(free.genre)
+                free.genre
               )}
 
               <h2>Platform:</h2>

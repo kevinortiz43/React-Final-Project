@@ -7,19 +7,30 @@ import SelectNumberOfPages from "./SelectNumberOfPages";
 export const ContextSetCategories = createContext();
 export const ContextSetDirection = createContext();
 export const ContextSetPages = createContext();
-function reducerDirection(state, action) {return action.payload;}
-function reducerCategory(state, action) {return action.payload;}
-function reducerPage(state,action) {return action.payload}
+
+function reducerDirection(state, action) {
+  return action.payload;
+}
+function reducerCategory(state, action) {
+  return action.payload;
+}
+function reducerPage(state, action) {
+  return action.payload;
+}
 
 export default function APIDeals() {
   const [deals, setDeals] = useState([]);
-  const [sortCategory, dispatchSortCategory] = useReducer(reducerCategory,"Reviews");
+  const [sortCategory, dispatchSortCategory] = useReducer(
+    reducerCategory,
+    "Reviews"
+  );
   const [count, setCount] = useState(1);
   const [pageSize, dispatchSetPageSize] = useReducer(reducerPage, 15);
-  const [sortDirection, dispatchSortDirection] = useReducer(reducerDirection,0);
+  const [sortDirection, dispatchSortDirection] = useReducer(
+    reducerDirection,
+    0
+  );
   const [searchBar, setSearchBar] = useState("");
-
-
 
   function dealAPICall() {
     axios
@@ -91,8 +102,6 @@ export default function APIDeals() {
     headers: {},
   };
 
-
-
   function categorySet(category) {
     dispatchSortCategory({ type: "sorting-the-category", payload: category });
     setCount(1);
@@ -102,18 +111,21 @@ export default function APIDeals() {
     setCount(1);
   }
   function pageSet(page) {
-    dispatchSetPageSize({type:"setting number", payload: page});
+    dispatchSetPageSize({ type: "setting number", payload: page });
     setCount(1);
+    
+         
   }
 
   function Searching(anything) {
     setSearchBar(anything.target.value);
     setCount(1);
-  }
   
+  }
+
   useEffect(() => {
     dealAPICall();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortCategory, count, sortDirection, pageSize, searchBar]);
 
   return (
@@ -152,20 +164,28 @@ export default function APIDeals() {
         </div>
 
         <div className="pageButtons">
+        
+         
           <h3>Page: {count}</h3>
 
           <button className="Previous-Page" onClick={firstPage}>
+          {window.scrollTo(0,0)}
+         
             First Page
           </button>
 
           <button className="Previous-Page" onClick={previousPage}>
-            {" "}
-            {"Last"}
+          {window.scrollTo(0,0)}
+         
+
+            Last
           </button>
 
           <button className="Next-Page" onClick={nextPage}>
-            {" "}
-            {"Next"}{" "}
+          {window.scrollTo(0,0)}
+         
+            
+            Next
           </button>
         </div>
       </div>
@@ -178,20 +198,21 @@ export default function APIDeals() {
               className="Video-Game-Thumbnails"
               alt="Video Game Thumbnails"
               src={deals.thumb}
-              style={{border:"solid"}}
-              />{" "}
+              style={{ border: "solid" }}
+            />{" "}
             <br />
             <p>Normal Price: ${deals.normalPrice}</p>
             <div className="Deals-Containers">
-            {deals.sales.map((deals, index) => {
-              return <DealsStore deals={deals} key={index} />;
-            })}{" "}
+              {deals.sales.map((deals, index) => {
+                return <DealsStore deals={deals} key={index} />;
+              })}{" "}
             </div>
             {deals.steamAppID === null ? (
               <p> Steam page not available </p>
-              ) : (
-              <a style={{textDecoration:"none"}}
-                href={`https://store.steampowered.com/app/${deals.steamAppID}` }
+            ) : (
+              <a
+                style={{ textDecoration: "none" }}
+                href={`https://store.steampowered.com/app/${deals.steamAppID}`}
               >
                 Steam Store page
               </a>
@@ -207,8 +228,6 @@ export default function APIDeals() {
             ) : (
               <p style={{ color: "red" }}>{deals.steamRatingPercent}%</p>
             )}
-
-
             {deals.steamAppID === null ? (
               <p style={{ color: "red" }}></p>
             ) : deals.steamRatingPercent > 70 ? (
@@ -220,19 +239,21 @@ export default function APIDeals() {
               <p style={{ color: "red" }}>{deals.steamRatingText}</p>
             )}
 
-            <a style={{textDecoration:"none"}} href={`https://www.metacritic.com${deals.metacriticLink}`}>
+            {/* <a
+              style={{ textDecoration: "none" }}
+              href={`https://www.metacritic.com${deals.metacriticLink}`}
+            >
               Metacritic review
             </a>
-            <h3>Metacritic Rating:</h3>
-            {deals.metacriticScore > 0 ? (
+            <h3>Metacritic Rating:</h3> }
+            {{deals.metacriticScore > 0 ? (
               <p style={{ color: "green" }} className="Rating-Percentage">
                 {" "}
                 {deals.metacriticScore}%
               </p>
             ) : (
-              <p style={{ color: "red" }}>No score available </p>
-            )}
-  
+              <p style={{ color: "red" }}>No score available </p>)} */}
+
           </div>
         ))}
       </div>
@@ -272,15 +293,18 @@ export default function APIDeals() {
         <div className="pageButtons">
           <h3>Page: {count}</h3>
           <button className="Previous-Page" onClick={firstPage}>
+          {window.scrollTo(0,0)}
             First Page
           </button>
 
           <button className="Previous-Page" onClick={previousPage}>
-            {"Last"}
+          {window.scrollTo(0,0)}
+         Last
           </button>
           <button className="Next-Page" onClick={nextPage}>
-            {"Next"}{" "}
-          </button>
+          {window.scrollTo(0,0)}
+         Next
+         </button>
         </div>
       </div>
     </div>
