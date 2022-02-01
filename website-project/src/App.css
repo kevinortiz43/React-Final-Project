@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.Credits-Container{
+  border:solid;
+  justify-self: center;
+}
+
 .Deals-Category {
   /* text-align: center; */
   display: grid;
