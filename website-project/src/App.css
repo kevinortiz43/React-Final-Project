@@ -7,6 +7,10 @@
   justify-self: center;
 }
 
+.Contacts{
+  border: solid;
+}
+
 .Deals-Category {
   /* text-align: center; */
   display: grid;
