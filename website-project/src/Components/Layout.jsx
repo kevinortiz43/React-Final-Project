@@ -13,9 +13,9 @@ export default function Layout() {
       <Nav />
       <div className="App">
         <Routes>
-          <Route path="credits" element={<Credits />} />
           <Route path="free" element={<DataFree />} />
           <Route path="deals" element={<APIDeals />} />
+          <Route path="credits" element={<Credits />} />
           <Route path="contact" element={<Contact />} />
           <Route path="*" element={<Error />} />
         </Routes>
