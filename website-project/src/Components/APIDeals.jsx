@@ -109,6 +109,7 @@ export default function APIDeals() {
 
   useEffect(() => {
     dealAPICall();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortCategory, count, sortDirection, pageSize, searchBar]);
 
   return (
