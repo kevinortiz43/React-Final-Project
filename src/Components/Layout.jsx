@@ -15,9 +15,9 @@ export default function Layout() {
         <Routes>
           <Route path="free" element={<DataFree />} />
           <Route path="deals" element={<APIDeals />} />
-          <Route path="credits" element={<Credits />} />
+          <Route path="*" element={<Credits />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="*" element={<Error />} />
+
         </Routes>
       </div>
     </Router>
